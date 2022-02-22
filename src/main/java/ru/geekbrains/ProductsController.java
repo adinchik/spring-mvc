@@ -22,11 +22,11 @@ public class ProductsController {
         return "show-products";
     }
 
-    @RequestMapping("/showForm")
+    /*@RequestMapping("/showForm")
     public String showSimpleForm(Model uiModel) {
         Product product = new Product();
-        uiModel.addAttribute("product", product);
         product.setId(productsRepository.getNewId());
+        uiModel.addAttribute("product", product);
         return "product-form";
     }
 
@@ -34,8 +34,6 @@ public class ProductsController {
     @RequestMapping("/processForm")
     public String processForm(@ModelAttribute("product") Product product) {
         return "product-form-result";
-    }
-
-
+    }*/
 
 }

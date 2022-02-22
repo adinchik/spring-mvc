@@ -1,5 +1,6 @@
 package ru.geekbrains;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -7,32 +8,24 @@ import java.util.List;
 
 @Component
 public class ProductsRepository {
-    private List<Product> products;
-    private int counter;
+    private ProductDAO productDAO;
 
-    public ProductsRepository() {
-        this.products = new ArrayList<>();
-        counter = 0;
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
+    @Autowired
+    public void setProductDAO(ProductDAO productDAO) {
+        this.productDAO = productDAO;
     }
 
     public Product findProductById(int id) {
-        for (Product product: products) {
-            if (product.getId() == id)
-                return product;
-        }
-        return null;
+        return productDAO.findById(id);
     }
 
     public List<Product> getAllProducts() {
-        return products;
+
+        return productDAO.findAll();
     }
 
-    public int getNewId() {
+    /*public int getNewId() {
         counter++;
         return counter;
-    }
+    }*/
 }
