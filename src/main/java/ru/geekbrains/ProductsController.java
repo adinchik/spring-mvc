@@ -3,22 +3,21 @@ package ru.geekbrains;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/product")
 public class ProductsController {
-    private ProductsRepository productsRepository;
+    private ProductsService productsService;
 
     @Autowired
-    public void setProductsRepository(ProductsRepository productsRepository) {
-        this.productsRepository = productsRepository;
+    public void setProductsService(ProductsService productsService) {
+        this.productsService = productsService;
     }
 
     @RequestMapping("/showProducts")
     public String showProducts(Model uiModel) {
-        uiModel.addAttribute("products", productsRepository.getAllProducts());
+        uiModel.addAttribute("products", productsService.getAllProducts());
         return "show-products";
     }
 
