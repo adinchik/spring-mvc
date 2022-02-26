@@ -2,6 +2,9 @@ package ru.geekbrains;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.springframework.context.annotation.Bean;
 
 import java.net.URL;
 import java.security.ProtectionDomain;
@@ -17,5 +20,14 @@ public class Launcher {
         server.setHandler(webapp);
         server.start();
         server.join();
+    }
+
+    @Bean(name = "SessionFactoryDB")
+    public SessionFactory getSessionFactory() {
+        SessionFactory factory = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Product.class)
+                .buildSessionFactory();
+        return factory;
     }
 }

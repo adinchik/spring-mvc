@@ -2,6 +2,8 @@ package ru.geekbrains;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,8 +13,11 @@ public class ProductDAOImpl implements ProductDAO{
 
     private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sf){
-        this.sessionFactory = sf;
+    @Autowired
+    @Qualifier("SessionFactoryDB")
+    public void setSessionFactory(SessionFactory sessionFactory){
+
+        this.sessionFactory = sessionFactory;
     }
 
     @Override
